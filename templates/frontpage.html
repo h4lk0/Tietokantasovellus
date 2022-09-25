@@ -1,4 +1,9 @@
 {% extends "base.html" %}
-{% block title %}{% endblock %}
+{% block title %}Etusivu{% endblock %}
 {% block content %}
+<ul class="list-group">
+    {% for item in items}
+        <li class="list-group-item">{{item}}</li>
+    {% endfor %}
+</ul>
 {% endblock %}
