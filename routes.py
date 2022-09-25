@@ -1,17 +1,19 @@
 from app import app
 from flask import render_template
 
+import storage
+
 @app.route("/")
 def index():
     return render_template("index.html")
 
-@app.route("/login")
-def login():
-    pass
+#@app.route("/login")
+#def login():
+#    pass
 
 @app.route("/register")
 def register():
-    pass
+    return render_template("register.html")
 
 @app.route("/user")
 def userpage():
@@ -21,6 +23,7 @@ def userpage():
 def adminpage():
     return render_template("admin.html")
 
-@app.route("/default")
+@app.route("/frontpage")
 def frontpage():
-    return render_template("frontpage.html")
+    list = storage.get_list()
+    return render_template("frontpage.html", items=list)
