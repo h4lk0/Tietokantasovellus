@@ -1,4 +1,3 @@
-from re import X
 from db import db
 
 def get_list():
