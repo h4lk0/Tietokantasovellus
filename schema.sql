@@ -32,7 +32,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE loans (
-    username REFERENCES users(username),
+    username TEXT REFERENCES users(username),
     name TEXT,
     amount INTEGER
 );
