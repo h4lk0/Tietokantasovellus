@@ -1,9 +1,40 @@
 {% extends "base.html" %}
 {% block title %}Etusivu{% endblock %}
 {% block content %}
-<ul class="list-group">
-    {% for item in items %}
-        <li class="list-group-item">{{item}}</li>
-    {% endfor %}
-</ul>
+<div class="container text-center">
+    <div class="row">
+      <div class="col">
+        Shelters
+        <ul class="list-group list-group-horizontal">
+            {% for item in items1 %}
+                <li class="list-group-item">{{item[0]}}</li>
+                <li class="list-group-item">{{item[1]}}</li>
+                <li class="list-group-item">{{item[2]}}</li>
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="col">
+        Tools
+        <ul class="list-group list-group-horizontal">
+            {% for item in items2 %}
+                <li class="list-group-item">{{item[0]}}</li>
+                <li class="list-group-item">{{item[1]}}</li>
+                <li class="list-group-item">{{item[2]}}</li>
+                <li class="list-group-item">{{item[3]}}</li>
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="col">
+        Misc
+        <ul class="list-group list-group-horizontal">
+            {% for item in items3 %}
+                <li class="list-group-item">{{item[0]}}</li>
+                <li class="list-group-item">{{item[1]}}</li>
+                <li class="list-group-item">{{item[2]}}</li>
+                <li class="list-group-item">{{item[3]}}</li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
 {% endblock %}
