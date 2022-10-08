@@ -3,6 +3,30 @@
 {% block content %}
 {{message}}
 {% if show == true %}
-<!--sisältö-->
+<div class="container text-center">
+    <div class="col">
+        Lainat
+        <div class="row">
+            <div class="col">
+                Lainaaja
+            </div>
+            <div class="col">
+                Tavara
+            </div>
+            <div class="col">
+                Määrä
+            </div>
+        </div>
+        {% for item in items %}
+        <div class="row">
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item">{{item[0]}}</li>
+                <li class="list-group-item">{{item[1]}}</li>
+                <li class="list-group-item">{{item[2]}}</li>
+              </ul>
+        </div>
+        {% endfor %}
+    </div>
+</div>
 {% endif %}
 {% endblock %}
