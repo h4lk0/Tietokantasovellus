@@ -19,7 +19,7 @@ def login(username, password):
         else:
             return False
 
-def logout(username):
+def logout():
     del session["user_id"]
     del session["username"]
     del session ["csrf_token"]
