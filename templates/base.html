@@ -9,7 +9,12 @@
 </head>
 <body>
     {% if session.user_id %}
-    Tulossa
+    <nav class="navbar bg-light">
+        <form class="container-fluid justify-content-start">
+            <a class="btn btn-dark" href="/user" role="button">Omat lainat</a>
+            <a class="btn btn-dark" href="/admin" role="button">Ylläpitö</a>
+        </form>
+      </nav>
     {% endif %}
     {% block content %}{% endblock %}
     {% if session.user_id %}
