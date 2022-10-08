@@ -27,8 +27,9 @@ def logout(username):
 def register(username, password):
     hash_value = generate_password_hash(password)
     try:
+        permission = False
         sql = "INSERT into users (username, password, is_admin) VALUES (:username, :password, :permission)"
-        db.session.execute(sql, {"username":username, "password":hash_value, "permission":FALSE})
+        db.session.execute(sql, {"username":username, "password":hash_value, "permission":permission})
         db.session.commit()
     except:
         return False
