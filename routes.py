@@ -18,7 +18,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         if users.login(username, password):
-            return redirect("/frontpage.html")
+            return redirect("/frontpage")
         else:
             return render_template("loginerror.html", message = "Väärä tunnus tai salasana")
 
@@ -56,5 +56,7 @@ def adminpage():
 
 @app.route("/frontpage")
 def frontpage():
-    list = storage.get_list()
-    return render_template("frontpage.html", items=list)
+    shelters = storage.get_list("shelters")
+    tools = storage.get_list("tools")
+    misc = storage.get_list("misc")
+    return render_template("frontpage.html", items1=shelters, items2=tools, items3=misc)

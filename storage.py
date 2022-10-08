@@ -1,8 +1,13 @@
 from unittest import result
 from db import db
 
-def get_list():
-    sql = "SELECT name, info, in_storage FROM shelters;"
+def get_list(tablename):
+    if tablename == "shelters":
+        sql = "SELECT name, info, in_storage FROM shelters;"
+    if tablename == "tools":
+        sql = "SELECT name, info, amount, in_storage FROM tools;"
+    if tablename == "misc":
+        sql = "SELECT name, info, amount, in_storage FROM misc;"
     result = db.session.execute(sql)
     return result.fetchall()
 
