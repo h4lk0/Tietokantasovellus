@@ -15,7 +15,7 @@ Sovellusta voi testata testitunnuksilla
 |testiadmin| heko1934 |  kyllä     |
 |  testi1  | salasana |   ei       |
 
-###TODO
+### TODO
 - Inventaarionäkymä selkeämmäksi
 - Ulkoasun siistiminen
 - Koodin refaktorointi
