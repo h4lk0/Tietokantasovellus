@@ -59,7 +59,7 @@ def userpage():
 @app.route("/admin")
 def adminpage():
     if users.check_admin():
-        list = storage.get_all()
+        list = storage.get_all_loans()
         if not list:
             return render_template("admin.html", show=True, message="Ei lainoja tällä hetkellä")
         else:
