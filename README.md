@@ -15,6 +15,12 @@ Sovellusta voi testata testitunnuksilla
 |testiadmin| heko1934 |  kyllä     |
 |  testi1  | salasana |   ei       |
 
+###TODO
+- Inventaarionäkymä selkeämmäksi
+- Ulkoasun siistiminen
+- Koodin refaktorointi
+- Koodin tyyli pythonin tyyliohjeiden mukaiseksi
+
 ## Tilanne 25.9.2022
 - Sovelluksen etusivulle pääsee [tästä](https://tsoha-lpkvarasto.herokuapp.com/) **HUOM!** Kirjautuminen tai rekisteröinti ei vielä toimi
 - Alustavaa versiota kirjautumisen jälkeisestä etusivusta pääsee tarkastelemaan [tästä](https://tsoha-lpkvarasto.herokuapp.com/frontpage)
