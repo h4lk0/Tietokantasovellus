@@ -43,7 +43,7 @@ def check_admin():
     sql = "SELECT is_admin FROM users WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
     permission = result.fetchone()
-    return permission
+    return permission[0]
 
 def user_id():
     return session.get("user_id")
