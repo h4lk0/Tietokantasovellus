@@ -7,7 +7,7 @@ def get_list():
     return result.fetchall()
 
 def get_loans(user_id):
-    sql = "SELECT loan_id, item_name, information FROM loans l LEFT JOIN inventory inv ON l.object_id = inv.item_type LEFT JOIN item_names i ON inv.item_type = i.name_id WHERE user_id:=user_id;"
+    sql = "SELECT loan_id, item_name, information FROM loans l LEFT JOIN inventory inv ON l.object_id = inv.item_type LEFT JOIN item_names i ON inv.item_type = i.name_id WHERE user_id=:user_id;"
     result = db.session.execute(sql, {"user_id":user_id})
     return result.fetchall()
 
