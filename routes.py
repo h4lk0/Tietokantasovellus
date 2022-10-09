@@ -53,7 +53,7 @@ def userpage():
             return render_template("user.html", items=list, message="Lainasi")
     if request.method == "POST":
         loan_id = request.form("loan_id")
-        storage.item_return(loan_id)
+        storage.item_return(loan_id[0])
         return redirect("/user")
 
 @app.route("/admin")
@@ -86,5 +86,5 @@ def frontpage():
     if request.method == "POST":
         user_id = users.user_id()
         object_id = request.form("object")
-        storage.new_loan(user_id,object_id)
+        storage.new_loan(user_id, object_id[0])
         return redirect("/frontpage")

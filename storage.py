@@ -18,7 +18,7 @@ def get_all_loans():
     return loans
 
 def get_available_items():
-    sql = "SELECT item_name, information, category_name, in_storage FROM inventory inv LEFT JOIN item_names n ON inv.item_type = n.name_id LEFT JOIN item_categories c ON inv.category = c.category_id WHERE in_storage ORDER BY item_name;"
+    sql = "SELECT item_id, item_name, information, category_name FROM inventory inv LEFT JOIN item_names n ON inv.item_type = n.name_id LEFT JOIN item_categories c ON inv.category = c.category_id WHERE in_storage ORDER BY item_name;"
     result = db.session.execute(sql)
     return result.fetchall()
 
