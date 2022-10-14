@@ -20,7 +20,7 @@ def login():
         if users.login(username, password):
             return redirect("/frontpage")
         else:
-            return render_template("loginerror.html", message = "Väärä tunnus tai salasana")
+            return render_template("loginerror.html", message="Väärä tunnus tai salasana")
 
 @app.route("/logout")
 def logout():
@@ -52,8 +52,8 @@ def userpage():
         else:
             return render_template("user.html", items=list, message="Lainasi")
     if request.method == "POST":
-        loan_id = request.form("loan_id")
-        storage.item_return(loan_id[0])
+        loan_id = request.form["loan_id"]
+        storage.item_return(loan_id)
         return redirect("/user")
 
 @app.route("/admin")
@@ -85,6 +85,6 @@ def frontpage():
         return render_template("frontpage.html", items1=shelters, items2=tools, items3=misc, available=available)
     if request.method == "POST":
         user_id = users.user_id()
-        object_id = request.form("object")
-        storage.new_loan(user_id, object_id[0])
+        object_id = request.form["equipment"]
+        storage.new_loan(user_id, object_id)
         return redirect("/frontpage")
