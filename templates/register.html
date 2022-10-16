@@ -1,23 +1,29 @@
 {% include "base.html" %}
 <title>Rekisteröidy</title>
 {% block content %}
-<form action="/register" method="post">
-    <div class="form-group">
-        <label for="inputUsername">Käyttäjänimi</label>
-        <input type="text" name="username" class="form-control" id="inputUsername" minlength="4" maxlength="15">
-        <div id="usernameHelp" class="form-text">Pituus 4-15 merkkiä</div>
+<div class="container">
+    <div class="row">
+        <div class="col-6 justify-content-center">
+            <form action="/register" method="post">
+                <div class="form-group col-4 my-1">
+                    <label for="inputUsername">Käyttäjänimi</label>
+                    <div id="usernameHelp" class="form-text">Pituus 4-15 merkkiä</div>
+                    <input type="text" name="username" class="form-control" id="inputUsername" minlength="4" maxlength="15">
+                </div>
+                <div class="form-group col-4 my-1">
+                    <label for="inputPassword1">Salasana</label>
+                    <div id="passwordHelp" class="form-text">5-20 merkkiä</div>
+                    <input type="password" name="password1" class="form-control" id="inputPassword1" minlength="5" maxlength="20">
+                </div>
+                <div class="form-group col-4 my-1">
+                    <label for="inputPassword2">Salasana uudestaan</label>
+                    <input type="password" name="password2" class="form-control" id="inputPassword2" minlength="5" maxlength="20">
+                </div>
+                <button type="submit" class="btn btn-primary mt-1">Rekisteröi</button>
+            </form>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="inputPassword1">Salasana</label>
-        <input type="password" name="password1" class="form-control" id="inputPassword1" minlength="5" maxlength="20">
-        <div id="passwordHelp" class="form-text">5-20 merkkiä</div>
-    </div>
-    <div class="form-group">
-        <label for="inputPassword2">Salasana uudestaan</label>
-        <input type="password" name="password2" class="form-control" id="inputPassword2" minlength="5" maxlength="20">
-    </div>
-    <button type="submit" class="btn btn-primary">Rekisteröi</button>
-</form>
+</div>
 {% endblock %}
 {% block error %}
 {% endblock %}
