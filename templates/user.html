@@ -23,6 +23,7 @@
             <form action="/user" method="post">
                 <div class="input-group mb-2">
                     <button type="submit" class="btn btn-primary">Palauta tavara</button>
+                    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
                     <select class="form-select" name="loan_id">
                         {% for item in items %}
                         <option value={{item[0]}}>{{item[1]}}, {{item[2]}}</option>

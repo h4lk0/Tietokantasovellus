@@ -51,6 +51,7 @@ def userpage():
         else:
             return render_template("user.html", items=list, message="Lainasi")
     if request.method == "POST":
+        users.check_csrf(request.form["csrf_token"])
         loan_id = request.form["loan_id"]
         storage.item_return(loan_id)
         return redirect("/user")
@@ -69,6 +70,7 @@ def adminpage():
         else:
             return render_template("admin.html", show=False, message="Et ole ylläpitäjä")
     if request.method == "POST":
+        users.check_csrf(request.form["csrf_token"])
         storage.return_all()
         return redirect("/admin")
 
@@ -89,6 +91,7 @@ def frontpage():
     if request.method == "GET":
         return render_template("frontpage.html", items1=shelters, items2=tools, items3=misc, available=available)
     if request.method == "POST":
+        users.check_csrf(request.form["csrf_token"])
         user_id = users.user_id()
         object_id = request.form["equipment"]
         storage.new_loan(user_id, object_id)

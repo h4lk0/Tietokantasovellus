@@ -34,8 +34,8 @@ def register(username, password):
         return False
     return login(username, password)
 
-def check_csrf():
-    if session["csrf_token"] != request.form["csrf_token"]:
+def check_csrf(token):
+    if session["csrf_token"] != token:
         abort(403)
 
 def check_admin():

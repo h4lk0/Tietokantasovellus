@@ -7,6 +7,7 @@
     <form action="/frontpage" method="post">
       <div class="input-group mb-2">
         <button type="submit" class="btn btn-primary mx-1">Lainaa</button>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
         <select class="form-select" name="equipment">
           {% for row in available %}
             <option value={{row[0]}}>{{row[1]}}, {{row[2]}}</option>
