@@ -1,8 +1,7 @@
-from pickle import FALSE
-from db import db
-from flask import abort, request, session
 from secrets import token_hex
+from flask import abort, session
 from werkzeug.security import generate_password_hash, check_password_hash
+from db import db
 
 def login(username, password):
     sql = "SELECT id, password FROM users WHERE username=:username"
@@ -10,14 +9,12 @@ def login(username, password):
     user = result.fetchone()
     if not user:
         return False
-    else:
-        if check_password_hash(user.password, password):
-            session["user_id"] = user.id
-            session["username"] = username
-            session["csrf_token"] = token_hex(16)
-            return True
-        else:
-            return False
+    if check_password_hash(user.password, password):
+        session["user_id"] = user.id
+        session["username"] = username
+        session["csrf_token"] = token_hex(16)
+        return True
+    return False
 
 def logout():
     del session["user_id"]
