@@ -1,31 +1,33 @@
 {% extends "base.html" %}
 {% block title %}Ylläpito{% endblock %}
 {% block content %}
-{{message}}
 {% if show == true %}
-<div class="container text-center">
-    <div class="col">
-        Lainat
-            <div class="col">
-                Lainaaja
-            </div>
-            <div class="col">
-                Tavara
-            </div>
-            <div class="col">
-                Määrä
-            </div>
-        </div> -->   
-        {% for item in items %}
-        <div class="row">
-            {{item}}
-        </div> 
-        {% endfor %}
+<div class="container">
+    <div class="row justify-content-center">
+        {{message}}
     </div>
-</div>
-<form method="post">
-    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
-    <button type="submit" class="btn btn-primary">Palauta tavarat</button>
-</form>
+    <div class="row">
+        <div class="col bg-light border-top border-start border-end border-dark">
+            <div class="row row-cols-3 bg-primary bg-opacity-10 fw-bold">
+              <div class="col">Lainaaja</div>
+              <div class="col">Tavara</div>
+              <div class="col">Tiedot</div>
+            </div>
+            {% for item in items %}
+            <div class="row row-cols-3 border-bottom border-dark">
+              <div class="col">{{item[1]}}</div>
+              <div class="col">{{item[2]}}</div>
+              <div class="col">{{item[3]}}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row mt-2 ">
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+            <button type="submit" class="btn btn-primary">Palauta kaikki</button>
+        </form>
+    </div>
+  </div>
 {% endif %}
 {% endblock %}
