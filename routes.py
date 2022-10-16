@@ -1,5 +1,3 @@
-from crypt import methods
-from email import message
 from app import app
 from flask import render_template, request, redirect
 
@@ -88,3 +86,10 @@ def frontpage():
         object_id = request.form["equipment"]
         storage.new_loan(user_id, object_id)
         return redirect("/frontpage")
+
+@app.route("/all")
+def return_all():
+    loans = storage.get_all_loans()
+    for loan in loans:
+        storage.item_return(loan[0])
+    return redirect("/admin")
