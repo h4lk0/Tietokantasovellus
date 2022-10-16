@@ -1,3 +1,4 @@
+from crypt import methods
 from app import app
 from flask import render_template, request, redirect
 
@@ -54,16 +55,24 @@ def userpage():
         storage.item_return(loan_id)
         return redirect("/user")
 
-@app.route("/admin")
+@app.route("/admin", methods=["GET", "POST"])
 def adminpage():
-    if users.check_admin():
-        list = storage.get_all_loans()
-        if not list:
-            return render_template("admin.html", show=True, message="Ei lainoja tällä hetkellä")
+    if request.method == "GET":
+        if not users.user_id():
+            return redirect("/")
+        if users.check_admin():
+            list = storage.get_all_loans()
+            if not list:
+                return render_template("admin.html", show=True, message="Ei lainoja tällä hetkellä")
+            else:
+                return render_template("admin.html", show=True, items=list, message="Lainat tällä hetkellä")
         else:
-            return render_template("admin.html", show=True, items=list, message="Hei ylläpitäjä")
-    else:
-        return render_template("admin.html", show=False, message="Et ole ylläpitäjä")
+            return render_template("admin.html", show=False, message="Et ole ylläpitäjä")
+    if request.method == "POST":
+        list = storage.get_all_loans()
+        for item in list:
+            storage.item_return(item[0])
+        return redirect("/admin")
 
 @app.route("/frontpage", methods=["GET", "POST"])
 def frontpage():
@@ -86,10 +95,3 @@ def frontpage():
         object_id = request.form["equipment"]
         storage.new_loan(user_id, object_id)
         return redirect("/frontpage")
-
-@app.route("/all")
-def return_all():
-    loans = storage.get_all_loans()
-    for loan in loans:
-        storage.item_return(loan[0])
-    return redirect("/admin")
