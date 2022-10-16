@@ -69,9 +69,7 @@ def adminpage():
         else:
             return render_template("admin.html", show=False, message="Et ole ylläpitäjä")
     if request.method == "POST":
-        list = storage.get_all_loans()
-        for item in list:
-            storage.item_return(item[0])
+        storage.return_all()
         return redirect("/admin")
 
 @app.route("/frontpage", methods=["GET", "POST"])

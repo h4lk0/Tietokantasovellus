@@ -12,7 +12,7 @@ def get_loans(user_id):
     return result.fetchall()
 
 def get_all_loans():
-    sql = "SELECT username, item_name, information FROM loans l LEFT JOIN inventory inv ON l.object_id = inv.item_type LEFT JOIN item_names i ON inv.item_type = i.name_id LEFT JOIN users u ON l.user_id = u.id;"
+    sql = "SELECT loan_id, username, item_name, information FROM loans l LEFT JOIN inventory inv ON l.object_id = inv.item_type LEFT JOIN item_names i ON inv.item_type = i.name_id LEFT JOIN users u ON l.user_id = u.id;"
     result = db.session.execute(sql)
     loans = result.fetchall()
     return loans
@@ -37,4 +37,14 @@ def item_return(loan_id):
     db.session.execute(sql2, {"object_id":object_id[0]})
     sql3 = "DELETE FROM loans WHERE loan_id=:loan_id;"
     db.session.execute(sql3, {"loan_id":loan_id})
+    db.session.commit()
+
+def return_all():
+    sql1 = "SELECT loan_id, object_id FROM loans;"
+    loans = db.session.execute(sql1).fetchall()
+    sql2 = "UPDATE inventory SET in_storage = TRUE WHERE item_id=:object_id;"
+    sql3 = "DELETE FROM loans WHERE loan_id=:loan_id;"
+    for loan in loans:
+        db.session.execute(sql2, {"object_id":loan[1]})
+        db.session.execute(sql3, {"loan_id":loan[0]})
     db.session.commit()
