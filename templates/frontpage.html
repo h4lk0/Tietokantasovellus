@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Etusivu{% endblock %}
 {% block content %}
+{% if session.user_id %}
 <div class="container text-start">
   <div class="row row-cols-2">
     <form action="/frontpage" method="post">
@@ -8,9 +9,9 @@
         <button type="submit" class="btn btn-primary mx-1">Lainaa</button>
         <select class="form-select" name="equipment">
           {% for row in available %}
-          <option value={{row[0]}}>{{row[1]}}, {{row[2]}}</option>
+            <option value={{row[0]}}>{{row[1]}}, {{row[2]}}</option>
           {% endfor %}
-      </select>
+        </select>
       </div>
     </form>
   </div>
@@ -58,6 +59,8 @@
         {% endfor %}
       </div>
   </div>
-
 </div>
+{% else %}
+<a class="btn btn-info" role="button" href="/">Kirjaudu sisään</a>
+{% endif %}
 {% endblock %}

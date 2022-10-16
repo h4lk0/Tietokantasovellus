@@ -2,28 +2,38 @@
 {% block title %}Käyttäjän sivu{% endblock %}
 {% block content %}
 {% if session.user_id %}
-<div class="container text-center">
-    <div class="row">
+<div class="container">
+    <div class="row justify-content-start">
         {{message}}
     </div>
-    <form action="/user" method="post">
-        <select class="form-select" name="loan_id">
+    <div class="row">
+        <div class="col-6 bg-light border border-dark">
             {% for item in items %}
-            <option value={{item[0]}}>{{item[1]}}</option>
-            {% endfor %}
-        </select>
-        <button type="submit" class="btn btn-primary">Palauta tavara</button>
-    </form>
-    {% for item in items %}
-        <div class="row">
-            <ul class="list-group">
-                <li class="list-group-item">{{item[0]}}</li>
-                <li class="list-group-item">{{item[1]}}</li>
-            </ul>
+            <div class="row justify-content-start row-cols-2">
+                <div class="col">
+                    {{item[1]}}
+                </div>
+                <div class="col">
+                    {{item[2]}}
+                </div>
+            </div>
+        {% endfor %}
         </div>
-    {% endfor %}
-  </div>
+        <div class="col-6">
+            <form action="/user" method="post">
+                <div class="input-group mb-2">
+                    <button type="submit" class="btn btn-primary">Palauta tavara</button>
+                    <select class="form-select" name="loan_id">
+                        {% for item in items %}
+                        <option value={{item[0]}}>{{item[1]}}, {{item[2]}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% else %}
-<button type="button" class="btn btn-info" href="/login">Kirjaudu sisään</button>
+<a class="btn btn-info" role="button" href="/">Kirjaudu sisään</a>
 {% endif %}
 {% endblock %}
